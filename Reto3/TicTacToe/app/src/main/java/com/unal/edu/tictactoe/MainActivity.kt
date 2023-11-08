@@ -109,6 +109,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun movimientoMaquina() {
         val casillasLibres = mutableListOf<Pair<Int, Int>>()
+
+        // Recorre el tablero para encontrar casillas libres
         for (i in 0 until 3) {
             for (j in 0 until 3) {
                 if (tablero[i][j] == '-') {
@@ -117,36 +119,63 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (casillasLibres.isNotEmpty()) {
-            val (i, j) = casillasLibres.random()
-            setFichaEnTablero(i, j)
-            val estadoPartida = gameController.estadoPartida(turnoJugador1)
+        // Verifica si el jugador humano puede ganar en el próximo movimiento y bloquea
+        for ((i, j) in casillasLibres) {
+            tablero[i][j] = 'X'
+            val estadoPartida = gameController.estadoPartida(true) // El segundo argumento indica que es el turno del jugador humano
+            tablero[i][j] = '-'
 
-            if (!gameOver) {
-                if (turnoJugador1 && estadoPartida == GameController.EstadoPartida.JUGADOR1_GANO) {
-                    showGameOverDialog("El Jugador 1 Ganó!")
-                    UserWins =+ 1
-                    actualizarEstadisticas()
-                    gameOver = true
-                } else if (!turnoJugador1 && estadoPartida == GameController.EstadoPartida.JUGADOR2_GANO) {
+            if (estadoPartida == GameController.EstadoPartida.JUGADOR1_GANO) {
+                setFichaEnTablero(i, j)
+                turnoJugador1 = !turnoJugador1 // Cambia el turno del jugador
+                return
+            }
+        }
+
+        // Verifica si la máquina puede ganar en el próximo movimiento
+        for ((i, j) in casillasLibres) {
+            tablero[i][j] = 'O'
+            val estadoPartida = gameController.estadoPartida(false) // El segundo argumento indica que es el turno de la máquina
+            tablero[i][j] = '-'
+
+            if (estadoPartida == GameController.EstadoPartida.JUGADOR2_GANO) {
+                setFichaEnTablero(i, j)
+                turnoJugador1 = !turnoJugador1 // Cambia el turno del jugador
+                // Verifica si el jugador 2 (máquina) ganó después de su movimiento
+                val estadoPartidaDespues = gameController.estadoPartida(false)
+                if (estadoPartidaDespues == GameController.EstadoPartida.JUGADOR2_GANO) {
+                    // Realiza las acciones necesarias cuando el jugador 2 (máquina) gana
+                    // como mostrar un mensaje o actualizar estadísticas
                     showGameOverDialog("El Jugador 2 Ganó!")
                     AndroidWins += 1
                     actualizarEstadisticas()
-                    gameOver = true
-                } else if (estadoPartida == GameController.EstadoPartida.EMPATE) {
-                    showGameOverDialog("Empate!")
-                    Empates =+ 1
-                    actualizarEstadisticas()
-                    gameOver = true
-                } else {
-                    turnoJugador1 = !turnoJugador1
                 }
+                return
+            }
+        }
+
+        // Si no se puede ganar ni bloquear, realiza un movimiento aleatorio
+        if (casillasLibres.isNotEmpty()) {
+            val (i, j) = casillasLibres.random()
+            setFichaEnTablero(i, j)
+            turnoJugador1 = !turnoJugador1 // Cambia el turno del jugador
+
+            // Verifica si el jugador 2 (máquina) ganó después de su movimiento aleatorio
+            val estadoPartidaDespues = gameController.estadoPartida(false)
+            if (estadoPartidaDespues == GameController.EstadoPartida.JUGADOR2_GANO) {
+                // Realiza las acciones necesarias cuando el jugador 2 (máquina) gana
+                // como mostrar un mensaje o actualizar estadísticas
+                showGameOverDialog("El Jugador 2 Ganó!")
+                AndroidWins += 1
+                actualizarEstadisticas()
             }
         }
     }
+
+
     private fun setFichaEnTablero(i: Int, j: Int) {
         if (i in 0 until 3 && j in 0 until 3 && tablero[i][j] == '-') {
-            tablero[i][j] = if (turnoJugador1) 'O' else 'X'
+            tablero[i][j] = if (turnoJugador1) 'X' else 'O'
             actualizarInterfazGrafica(i, j)
         }
     }
