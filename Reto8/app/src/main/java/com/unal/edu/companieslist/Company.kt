@@ -7,5 +7,5 @@ data class Company(
     val phone: Int,
     val email: String,
     val prodAndServ: String,
-
+    val classification: String,
 )
