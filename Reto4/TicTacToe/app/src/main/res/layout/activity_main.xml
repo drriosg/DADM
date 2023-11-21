@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/dificultadTextview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dificultad: "
+        android:layout_marginTop="16dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/tableroLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/white"
+                android:layout_weight="1"
+                ></ImageView>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/StartBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/NewGame"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/DificultyBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Dificultad"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ExitBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Salir"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/UserWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Victorias del Usuario: 0"
+            ></TextView>
+        <TextView
+            android:id="@+id/AndroidWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Victorias del a Máquina: 0"
+            ></TextView>
+        <TextView
+            android:id="@+id/Empates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Empates: 0"
+            ></TextView>
+    </LinearLayout>
+
+</LinearLayout>
